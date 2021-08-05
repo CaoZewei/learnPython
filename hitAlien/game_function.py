@@ -31,12 +31,17 @@ def check_keydown_events(event,ai_setting, screen, ship, bullets):
         fire_super_bullet(ai_setting, screen, ship, bullets)
     elif event.key == pygame.K_q:
         sys.exit()
+    elif event.key == pygame.K_a:
+        ship.fireinall = True
+       
 
 def check_keyup_events(event,ai_setting, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:
         ship.moving_right = False
     elif event.key == pygame.K_LEFT:
         ship.moving_left = False
+    elif event.key == pygame.K_a:
+        ship.fireinall = False
 
 def update_screen(ai_setting, screen, ship, bullets,aliens,button,stats,score):
     screen.fill(ai_setting.bg_color)
@@ -50,6 +55,8 @@ def update_screen(ai_setting, screen, ship, bullets,aliens,button,stats,score):
     pygame.display.flip()
 
 def update_bullets(ai_setting, screen, aliens, ship, bullets,stats,score):
+    if ship.fireinall:
+        fire_bullets(ai_setting,screen,ship,bullets)
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:

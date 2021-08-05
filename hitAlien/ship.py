@@ -19,6 +19,8 @@ class Ship():
         self.moving_bottom = False
         self.moving_top = False
 
+        self.fireinall = False
+
     def blitme(self):
         """指定位置绘制飞船"""
         self.screen.blit(self.image,self.rect)
