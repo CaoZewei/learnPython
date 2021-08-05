@@ -11,7 +11,7 @@ class Setting():
         self.bullet_color = (60,60,60)
         self.bullet_allowed = 10
 
-        self.fleet_drop_speed = 10
+        self.fleet_drop_speed = 100
 
         self.ship_limit = 3
 

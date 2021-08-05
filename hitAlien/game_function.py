@@ -75,6 +75,8 @@ def check_bullet_alien_collisions(ai_setting, screen, aliens, ship, bullets,stat
     if len(aliens) == 0:
         bullets.empty()
         ai_setting.increase_speed()
+        stats.level+=1
+        score.prep_level()
         create_fleet(ai_setting, screen, aliens, ship)
 
 def fire_bullets(ai_setting, screen, ship, bullets):
@@ -117,18 +119,19 @@ def create_alien(ai_setting,screen,number_col,number_row,aliens):
     alien.rect.y=alien.y
     aliens.add(alien)
 
-def update_aliens(ai_setting, screen, aliens, ship, bullets, stats):
+def update_aliens(ai_setting, screen, aliens, ship, bullets, stats,score):
     check_fleet_edges(ai_setting,aliens)
     aliens.update()
     if pygame.sprite.spritecollideany(ship,aliens):
-        ship_hited(ai_setting,screen,aliens,ship,bullets,stats)
-    check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets)
+        ship_hited(ai_setting,screen,aliens,ship,bullets,stats,score)
+    check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets,score)
 
-def ship_hited(ai_setting, screen, aliens, ship, bullets, stats):
+def ship_hited(ai_setting, screen, aliens, ship, bullets, stats,score):
     if stats.ships_left > 0:
         stats.ships_left -= 1
         aliens.empty()
         bullets.empty()
+        score.prep_ships()
         create_fleet(ai_setting,screen,aliens,ship)
         ship.center_ship()
         sleep(0.5)
@@ -136,11 +139,11 @@ def ship_hited(ai_setting, screen, aliens, ship, bullets, stats):
         stats.game_active =False
         pygame.mouse.set_visible(True)
 
-def check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets):
+def check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets,score):
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
-            ship_hited(ai_setting, screen, aliens, ship, bullets, stats)
+            ship_hited(ai_setting, screen, aliens, ship, bullets, stats,score)
             break
 
 def check_fleet_edges(ai_setting,aliens):
@@ -158,6 +161,10 @@ def check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens
     if button.rect.collidepoint(mouse_x,mouse_y) and not stats.game_active:
         stats.reset_stats()
         score.prep_score()
+        score.prep_high_score()
+        score.prep_level()
+        score.prep_ships()
+
         stats.game_active =True
 
         aliens.empty()

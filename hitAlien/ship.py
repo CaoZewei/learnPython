@@ -1,8 +1,10 @@
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
     """初始化飞船"""
     def __init__(self,screen,ai_setting) -> None:
+        super().__init__()
         self.screen = screen
         self.image = pygame.image.load('res/image/ship.bmp')
         self.rect = self.image.get_rect()
