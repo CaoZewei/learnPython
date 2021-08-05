@@ -5,6 +5,7 @@ from setting import Setting
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from time import sleep
 
 def check_events(ai_setting, screen, ship, bullets):
     for event in pygame.event.get():
@@ -97,9 +98,30 @@ def create_alien(ai_setting,screen,number_col,number_row,aliens):
     alien.rect.y=alien.y
     aliens.add(alien)
 
-def update_aliens(ai_setting, aliens):
+def update_aliens(ai_setting, screen, aliens, ship, bullets, stats):
     check_fleet_edges(ai_setting,aliens)
     aliens.update()
+    if pygame.sprite.spritecollideany(ship,aliens):
+        ship_hited(ai_setting,screen,aliens,ship,bullets,stats)
+    check_aliens_bottom(ai_setting,screen,aliens,ship,bullets,stats)
+
+def ship_hited(ai_setting, screen, aliens, ship, bullets, stats):
+    if stats.ship_left > 0:
+        stats.ships_left -= 1
+        aliens.empty()
+        bullets.empty()
+        create_fleet(ai_setting,screen,aliens,ship)
+        ship.center_ship()
+        sleep(0.5)
+    else:
+        stats.game_active =False
+
+def check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets):
+    screen_rect = screen.get_rect()
+    for alien in aliens.sprites():
+        if alien.rect.bottom >= screen_rect.bottom:
+            ship_hited(ai_setting,stats,screen,ship,aliens,bullets)
+            break
 
 def check_fleet_edges(ai_setting,aliens):
     for alien in aliens.sprites():

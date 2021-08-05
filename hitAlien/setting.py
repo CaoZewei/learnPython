@@ -14,3 +14,4 @@ class Setting():
         self.alien_speed_factor = 0.1
         self.fleet_direction =1 #1 == 向右 -1 == 向左
         self.fleet_drop_speed = 10
+        self.ship_limit = 3
