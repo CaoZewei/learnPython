@@ -21,7 +21,7 @@ def run_game():
     button = Button(ai_setting,screen,"Play")
     score = Scoreboard(ai_setting,screen,stats)
     while True:
-        game_f.check_events(ai_setting, screen, ship, aliens, bullets, button, stats)
+        game_f.check_events(ai_setting, screen, ship, aliens, bullets, button, stats,score)
         if stats.game_active:
             ship.update_location()
             game_f.update_bullets(ai_setting, screen, aliens, ship, bullets,stats,score)

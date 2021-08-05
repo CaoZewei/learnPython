@@ -8,7 +8,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 
-def check_events(ai_setting, screen, ship,aliens, bullets,button,stats):
+def check_events(ai_setting, screen, ship,aliens, bullets,button,stats,score):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
@@ -18,7 +18,7 @@ def check_events(ai_setting, screen, ship,aliens, bullets,button,stats):
             check_keyup_events(event,ai_setting, screen, ship, bullets)
         elif event.type == pygame.MOUSEBUTTONDOWN:
             mouse_x,mouse_y = pygame.mouse.get_pos()
-            check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens,bullets)
+            check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens,bullets,score)
 
 def check_keydown_events(event,ai_setting, screen, ship, bullets):
     if event.key == pygame.K_RIGHT:
@@ -71,6 +71,7 @@ def check_bullet_alien_collisions(ai_setting, screen, aliens, ship, bullets,stat
         for aliens in collisions.values():
             stats.score += ai_setting.alien_point*len(aliens)
             score.prep_score()
+        check_high_score(stats,score)
     if len(aliens) == 0:
         bullets.empty()
         ai_setting.increase_speed()
@@ -139,7 +140,7 @@ def check_aliens_bottom(ai_setting,stats,screen,ship,aliens,bullets):
     screen_rect = screen.get_rect()
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
-            ship_hited(ai_setting,stats,screen,ship,aliens,bullets)
+            ship_hited(ai_setting, screen, aliens, ship, bullets, stats)
             break
 
 def check_fleet_edges(ai_setting,aliens):
@@ -153,9 +154,10 @@ def change_fleet_direction(ai_setting,alines):
         alien.rect.y+=ai_setting.fleet_drop_speed
     ai_setting.fleet_direction *= -1
 
-def check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens,bullets):
+def check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens,bullets,score):
     if button.rect.collidepoint(mouse_x,mouse_y) and not stats.game_active:
         stats.reset_stats()
+        score.prep_score()
         stats.game_active =True
 
         aliens.empty()
@@ -165,3 +167,8 @@ def check_play_button(stats,button,mouse_x,mouse_y,ai_setting,screen,ship,aliens
         ship.center_ship()
         ai_setting.initialize_dynamic_setting()
         pygame.mouse.set_visible(False)
+
+def check_high_score(stats,score):
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        score.prep_high_score()
