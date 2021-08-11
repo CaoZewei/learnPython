@@ -1,2 +1,2 @@
 # learnPython
-这是一个做leecode回答的测试文件
+这是一个学习Python的文件库
