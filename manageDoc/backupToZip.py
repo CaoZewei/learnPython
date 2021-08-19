@@ -17,18 +17,21 @@ def backupToZip(folder):
     afile = folder+ "\\" +afile
     backupZip = zipfile.ZipFile(afile,'w')
     for foldername,subfoldername,file in os.walk(folder):#浏览目录树
-        
         foldername=os.path.basename(foldername)
-        backupZip.write('../'+foldername)
         for newfile in file:
             # if newfile.endswith('.zip'):
             if '.zip' in newfile:
                 break
+            backupZip.write('../'+foldername)
             backupZip.write(os.path.join('../'+foldername,newfile))
             print(os.path.join(foldername,newfile))
 
+a='str'
+b='str'
+print(a[1],b[1])
+print(a[0],b[1])
 
-backupToZip('E:\C#code\python\learnPython\manageDoc')
+# backupToZip('E:\C#code\python\learnPython\manageDoc')
 
 
         
