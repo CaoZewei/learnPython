@@ -10,8 +10,7 @@ downloadtxt --下载罗密欧与朱丽叶.txt
 
 commonWebofMy --一个保存常用网站的脚本工具
         
-&emsp;&emsp;&emsp;&emsp;**用法**
-        
+&emsp;&emsp;&emsp;&emsp;**用法**    
 &emsp;&emsp;&emsp;&emsp;*python.exe commonWebofMy.py save <keyword> <url>- save url to keyword*
         
 &emsp;&emsp;&emsp;&emsp;*python.exe commonWebofMy.py save <keyword> - save clipboard to keyword*
