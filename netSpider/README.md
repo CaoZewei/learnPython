@@ -2,11 +2,15 @@
 一个学习网络爬虫的文档的文档
 
 mapit --百度地图搜索<keyword>地理位置
-        python.exe mapIt.py <keyword>
+        
+&emsp;&emsp;&emsp;&emsp;**用法**
+        &emsp;&emsp;&emsp;&emsp;*python.exe mapIt.py <keyword>*
         
 downloadtxt --下载罗密欧与朱丽叶.txt
 
 commonWebofMy --一个保存常用网站的脚本工具
+        
+        &emsp;&emsp;&emsp;&emsp;**用法**
         
 &emsp;&emsp;&emsp;&emsp;*python.exe commonWebofMy.py save <keyword> <url>- save url to keyword*
         
