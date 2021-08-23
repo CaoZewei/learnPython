@@ -1,5 +1,5 @@
 import os
-path = os.getcwd()
+path = os.getcwd() ##获取当前工作目录的绝对文件路径
 textpath = path+"\hello.txt"
 with open(textpath,'r') as file :
     print(file.read())
@@ -13,9 +13,9 @@ with open(sonnetpath,'r') as sonnetFile:
 
 
 baconPath = 'bacon.txt'
-with open(baconPath,'w') as baconFile:
+with open(baconPath,'w') as baconFile:##w 擦除写入
     baconFile.write('hello os write!!\n')
 
-with open(baconPath,'a') as baconFile:
+with open(baconPath,'a') as baconFile:##a 是附加写入
     baconFile.write('bacon is very delicious')
 

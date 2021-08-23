@@ -26,11 +26,6 @@ def backupToZip(folder):
             backupZip.write(os.path.join('../'+foldername,newfile))
             print(os.path.join(foldername,newfile))
 
-a='str'
-b='str'
-print(a[1],b[1])
-print(a[0],b[1])
-
 # backupToZip('E:\C#code\python\learnPython\manageDoc')
 
 
