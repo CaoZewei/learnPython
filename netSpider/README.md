@@ -1,11 +1,12 @@
 # learnPython
-Ò»¸öÑ§Ï°ÍøÂçÅÀ³æµÄÎÄµµµÄÎÄµµ
+ä¸€ä¸ªå­¦ä¹ ç½‘ç»œçˆ¬è™«çš„æ–‡æ¡£çš„æ–‡æ¡£
 
-mapit --°Ù¶ÈµØÍ¼ËÑË÷<keyword>µØÀíÎ»ÖÃ
+mapit --ç™¾åº¦åœ°å›¾æœç´¢<keyword>åœ°ç†ä½ç½®
         python.exe mapIt.py <keyword>
-downloadtxt --ÏÂÔØÂŞÃÜÅ·ÓëÖìÀöÒ¶.txt
+        
+downloadtxt --ä¸‹è½½ç½—å¯†æ¬§ä¸æœ±ä¸½å¶.txt
 
-commonWebofMy --Ò»¸ö±£´æ³£ÓÃÍøÕ¾µÄ½Å±¾¹¤¾ß
+commonWebofMy --ä¸€ä¸ªä¿å­˜å¸¸ç”¨ç½‘ç«™çš„è„šæœ¬å·¥å…·
                 python.exe commonWebofMy.py save <keyword> <url>- save url to keyword
                 python.exe commonWebofMy.py save <keyword> - save clipboard to keyword
                 python.exe commonWebofMy.py <keyword> - load keyword and open url
